@@ -1,0 +1,15 @@
+{
+  "name": "schedulechangebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getScheduleChanges.js",
+  "scripts": {
+    "run": "node getScheduleChanges.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-persist": "^3.0.4",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
