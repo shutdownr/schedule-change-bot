@@ -1,7 +1,5 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
-const store = require('node-persist')
-var setSemester = require("./configure").setSemester
-var setProgram = require("./configure").setProgram
+var store = require('node-persist')
 var config = require("./config.json")
 
 var xhr = new XMLHttpRequest()
@@ -65,8 +63,8 @@ start()
 async function start() {
   await store.init()
 
-  setSemester(store, "6")
-  setProgram(store, "MC")
+//  await setSemester("6")
+//  await setProgram("MC")
 
   // config variables, need to be set by the user
   var program = await store.getItem("program")
