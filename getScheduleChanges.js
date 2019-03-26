@@ -1,7 +1,5 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
-const store = require('node-persist')
-var setSemester = require("./configure").setSemester
-var setProgram = require("./configure").setProgram
+var store = require('node-persist')
 var config = require("./config.json")
 
 var xhr = new XMLHttpRequest()
@@ -31,7 +29,7 @@ xhr.onreadystatechange = async function() {
     }
     
     for(var i = 0; i < newData.length; i++) {
-      newData[i] = newData[i].replace(/<br\/> */gi,"%0A") // Turn <br/> into Telegram newlines 
+      newData[i] = newData[i].replace(/<br\/> */gi,"%0A") // Turn <br/> into Telegram newlines
       .replace(/<.*?>/gi, "") // Strip remaining tags
       .replace(/%0A(%0A)+/,"%0A") // Remove extra returns
       .trim() // Remove trailing/leading whitespace
@@ -54,7 +52,7 @@ xhr.onreadystatechange = async function() {
       }
     }
 
-    await store.setItem("changes",newData)    
+    await store.setItem("changes",newData)
   }
 }
 
@@ -65,8 +63,8 @@ start()
 async function start() {
   await store.init()
 
-  setSemester(store, "6")
-  setProgram(store, "MC")
+//  await setSemester("6")
+//  await setProgram("MC")
 
   // config variables, need to be set by the user
   var program = await store.getItem("program")
@@ -99,5 +97,7 @@ async function start() {
   "tx_stundenplan_stundenplan[semester]="+semester+"&tx_stundenplan_stundenplan[datum]=TT.MM.JJJJ&1553005727554", true)
 
   xhr.send(null)
-  
+
 }
+
+module.exports = {start: start}
